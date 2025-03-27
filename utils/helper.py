@@ -20,8 +20,7 @@ def convert_pdf_to_image(pdf_path: str, zoom: float = 2.0) -> list[str]:
     for page_num in range(len(pdf_document)):
         page = pdf_document[page_num]
 
-        # Increase resolution using a transformation matrix
-        matrix = fitz.Matrix(zoom, zoom)  # Scaling for higher DPI
+        matrix = fitz.Matrix(zoom, zoom)  
         pixmap = page.get_pixmap(matrix=matrix) 
         img_array = np.frombuffer(pixmap.samples, dtype=np.uint8).reshape(pixmap.h, pixmap.w, -1)
         
